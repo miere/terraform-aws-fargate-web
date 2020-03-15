@@ -1,0 +1,40 @@
+{
+  "family": "${family}",
+  "taskRoleArn": "${task_role_arn}",
+  "executionRoleArn": "${execution_role_arn}",
+  "networkMode": "awsvpc",
+  "requiresCompatibilities": ["FARGATE"],
+  "cpu": "${cpu}",
+  "memory": "${memory}",
+  "containerDefinitions": [{
+    "name": "${name}",
+    "image": "${image}",
+    "essential": true,
+    "portMappings": [{
+        "containerPort": ${port},
+        "hostPort": ${port}
+    }],
+    "logConfiguration": {
+      "logDriver": "awslogs",
+      "options": {
+        "awslogs-group": "${log-group}",
+        "awslogs-region": "${region}",
+        "awslogs-stream-prefix": "default"
+      }
+    },
+    "environment": [
+      {
+        "name": "PORT",
+        "value": "${port}"
+      },
+      {
+        "name": "APP_NAME",
+        "value": "${app_name}"
+      },
+      {
+        "name": "ENVIRONMENT",
+        "value": "${environment}"
+      }
+    ]
+  }]
+}

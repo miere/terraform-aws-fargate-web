@@ -1,0 +1,15 @@
+{
+  "Resources": [
+    {
+      "TargetService": {
+        "Type": "AWS::ECS::Service",
+        "Properties": {
+          "TaskDefinition": "${name}",
+          "LoadBalancerInfo": {
+            "ContainerName": "${name}",
+            "ContainerPort": ${port}
+          }
+        }
+      }
+  }]
+}
